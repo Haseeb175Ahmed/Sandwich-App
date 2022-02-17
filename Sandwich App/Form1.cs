@@ -46,9 +46,33 @@ namespace Sandwich_App
                 }
             }
 
-            LeaveswithSandwich.Text = (SandwichLeaves + Leaves).ToString();
-            LeaveswithoutSandwich.Text = Leaves.ToString();
+            DateTime BeforStartDay = FromDate.AddDays(-1);
+            DateTime AfterEndDay = ToDate.AddDays(1);
+            if (listDates.Contains(BeforStartDay) || BeforStartDay.DayOfWeek == DayOfWeek.Saturday || BeforStartDay.DayOfWeek == DayOfWeek.Sunday)
+            {
+                if (listDates.Contains(AfterEndDay) || AfterEndDay.DayOfWeek == DayOfWeek.Saturday || AfterEndDay.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    if (SandwichLeaves > 0)
+                    {
+                        LeaveswithSandwich.Text = (SandwichLeaves + Leaves).ToString();
+                    }
+                    else
+                    {
+                        LeaveswithSandwich.Text = "0";
+                    }
+                }
+                else
+                {
+                    LeaveswithSandwich.Text = "0";
+                }
+            }
+            else
+            {
+                LeaveswithSandwich.Text = "0";
+            }
 
+
+            LeaveswithoutSandwich.Text = Leaves.ToString();
         }
 
 
@@ -101,5 +125,7 @@ namespace Sandwich_App
 
             return GazettedHolidays;
         }
+
+
     }
 }
